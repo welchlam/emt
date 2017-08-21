@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.welch</groupId>
+	<artifactId>emt</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>emt</name>
+	<description>Enterprise Management Tool</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<!--<vaadin.version>8.0.5</vaadin.version>-->
+		<vaadin.version>8.1.0.beta1</vaadin.version>
+		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-spring-boot-starter</artifactId>
+		</dependency>
+		<!--<dependency>
+			<groupId>com.vaadin.addon</groupId>
+			<artifactId>vaadin-charts</artifactId>
+			<version>2.1.3</version>
+		</dependency>-->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-charts</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-icons</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client-compiled</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-compatibility-server</artifactId>
+			&lt;!&ndash;<version>8.0.5</version>&ndash;&gt;
+			<version>${vaadin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-compatibility-client</artifactId>
+			&lt;!&ndash;<version>8.0.5</version>&ndash;&gt;
+			<version>${vaadin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-compatibility-shared</artifactId>
+			&lt;!&ndash;<version>8.0.5</version>&ndash;&gt;
+			<version>${vaadin.version}</version>
+		</dependency>-->
+		<!--<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-push</artifactId>
+		</dependency>-->
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+		<repository>
+			<id>vaadin-prereleases</id>
+			<name>Vaadin Pre-releases</name>
+			<url>https://maven.vaadin.com/vaadin-prereleases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>vaadin-prereleases</id>
+			<name>Vaadin Pre-releases</name>
+			<url>https://maven.vaadin.com/vaadin-prereleases</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<version>${vaadin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/non-packaged-resources</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!--<plugin>
+				<groupId>in.virit.vwscdn</groupId>
+				<artifactId>vwscdn-maven-plugin</artifactId>
+				<version>1.3.4</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
+			<!--<plugin>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-maven-plugin</artifactId>
+				<version>${vaadin.version}</version>
+				<configuration>
+					<extraJvmArgs>-Xmx2g -Xss1024k</extraJvmArgs>
+					&lt;!&ndash;<webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>&ndash;&gt;
+					<webappDirectory>${basedir}/src/non-packaged-resources/VAADIN/widgetsets</webappDirectory>
+					<draftCompile>false</draftCompile>
+					<compileReport>false</compileReport>
+					<style>OBF</style>
+					<strict>true</strict>
+					&lt;!&ndash;<runTarget>http://localhost:8080/emt</runTarget>&ndash;&gt;
+					<module>EmtWidgetset</module>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>update-widgetset</goal>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
+		</plugins>
+	</build>
+</project>
