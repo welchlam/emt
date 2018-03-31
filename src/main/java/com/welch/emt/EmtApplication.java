@@ -34,6 +34,9 @@ public class EmtApplication {
 			System.setProperty("emt.app.home",home);
 			System.setProperty("emt.app.key",key);
 			System.setProperty("dbPassword", dbPassword);
+			//System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
+			//System.out.println(dbPassword);
+			//System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

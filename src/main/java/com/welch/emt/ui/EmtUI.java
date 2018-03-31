@@ -1,6 +1,7 @@
 package com.welch.emt.ui;
 
 //import UserService;
+import com.welch.emt.service.UserService;
 import com.welch.emt.ui.layout.OrderLayout;
 import com.welch.emt.ui.layout.OrderStatisticLayout;
 import com.welch.emt.ui.util.UIHelper;
@@ -28,8 +29,8 @@ public class EmtUI extends UI {
 
     private static Logger Log = LoggerFactory.getLogger(EmtUI.class);
 
-    /*@Autowired
-    private UserService userService;*/
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private LoginWindow loginWindow;
